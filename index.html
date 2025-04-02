@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name - Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      overflow-x: hidden;
+    }
+    header {
+      background: #1e1e2f;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .button {
+      background: #333;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+      border-radius: 5px;
+    }
+    .certificates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .certificates img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <p>Creative Technologist | 3D Artist | Web Tinkerer</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Welcome to my personal site! I'm passionate about blending technology with creativity. Here you can view my work, download my CV, and even have a little fun with interactive effects.</p>
+  </section>
+
+  <section>
+    <h2>Download My CV</h2>
+    <a href="cv.pdf" class="button" download>Download CV</a>
+  </section>
+
+  <section>
+    <h2>3D Certificate Renders</h2>
+    <div class="certificates">
+      <img src="assets/certs/cert1.jpg" alt="Certificate 1">
+      <img src="assets/certs/cert2.jpg" alt="Certificate 2">
+      <!-- Replace with your 3D render viewer later -->
+    </div>
+  </section>
+
+  <section>
+    <h2>Fun Mode</h2>
+    <p>Want to see something fun? Click below to activate gravity!</p>
+    <button class="button" onclick="activateGravity()">Activate Gravity</button>
+  </section>
+
+  <script>
+    function activateGravity() {
+      document.querySelectorAll('body *').forEach(el => {
+        el.style.position = 'absolute';
+        el.style.transition = 'none';
+
+        let top = el.offsetTop;
+        let velocity = 0;
+
+        function fall() {
+          velocity += 1;
+          top += velocity;
+
+          if (top + el.offsetHeight > window.innerHeight) {
+            top = window.innerHeight - el.offsetHeight;
+            velocity *= -0.6;
+          }
+
+          el.style.top = `${top}px`;
+          requestAnimationFrame(fall);
+        }
+
+        fall();
+      });
+    }
+  </script>
+</body>
+</html>
